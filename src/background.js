@@ -151,7 +151,7 @@ app.on('ready', async () => {
         Authorization: `Token ${TOKEN}`,
         'Content-Type': 'application/json;charset=utf-8',
       },
-    }).then((r) => {
+    }).then(() => {
       // Si la llamada a la API es exitosa, permite que la aplicación se suspenda
        
       powerSaveBlocker.stop(id)

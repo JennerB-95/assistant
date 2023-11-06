@@ -1,6 +1,6 @@
 {
   "name": "assistant-app",
-  "version": "1.1.35-beta",
+  "version": "1.0.3",
   "private": true,
   "description": "Aplicación de médico asistente unificada",
   "author": {
@@ -26,8 +26,8 @@
           "name": "@electron-forge/publisher-github",
           "config": {
             "repository": {
-              "owner": "BitmecDev",
-              "name": "short-releases"
+              "owner": "JennerB-95",
+              "name": "assistant"
             }
           }
         }
@@ -139,6 +139,6 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BitmecDev/short-releases.git"
+    "url": "https://github.com/JennerB-95/assistant.git"
   } 
 }
