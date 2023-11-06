@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  socket:
+    build:
+        context: ./
+        dockerfile: sock.Dockerfile
+    #image: bitmec-assistant/socket:app
+    ports:
+      - "3000:3000" 
+    networks:
+      - web_nw
+    restart: always
+  nginx:
+    build:
+      context: ./
+      dockerfile: front.Dockerfile
+    # image: bitmecdev/cabinas:arm32v7
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes: 
+      - /data/certs:/etc/nginx/certs
+    networks:
+      - web_nw
+    restart: always
+volumes:
+  netdatalib:
+  netdatacache:
+
+networks:   
+  web_nw:
+    driver: bridge
