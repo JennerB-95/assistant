@@ -91,10 +91,25 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
     autoUpdater.checkForUpdatesAndNotify()
-    win.showMessage('Modify to updates')
+    // Handle updates
+    autoUpdater.on('update-available', () => {
+      alert('¡Hay una actualización disponible 1!');
+    });
 
   }
 }
+
+autoUpdater.on("checking-for-update", () => {
+  console.log("checking-for-update");
+});
+
+autoUpdater.on("update-available", () => {
+  console.log("update-available");
+});
+
+autoUpdater.on("update-not-available", () => {
+  console.log("update-not-available");
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -121,6 +136,11 @@ app.on('ready', async () => {
       repo: '', // defaults to package.json
       updateInterval: '5 minutes',
       notifyUser: true
+  });
+  autoUpdater.on('update-available', () => {
+    alert('¡Hay una actualización disponible!');
+    console.log('¡Hay una actualización disponible!');
+
   });
   createWindow(); 
   if (isDevelopment && !process.env.IS_TEST) {
