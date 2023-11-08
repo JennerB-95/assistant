@@ -2,7 +2,7 @@
 
 import { app, protocol, BrowserWindow, dialog} from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import { autoUpdater, dialog } from "electron-updater"
+import { autoUpdater } from "electron-updater"
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const { powerMonitor } = require('electron');
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -121,7 +121,6 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
     if (returnValue.response === 0) autoUpdater.quitAndInstall()
   })
 })
-
 
 
 // Quit when all windows are closed.
