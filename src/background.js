@@ -2,7 +2,7 @@
 
 import { app, protocol, BrowserWindow, dialog} from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import { autoUpdater } from "electron-updater"
+import { autoUpdater, dialog } from "electron-updater"
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const { powerMonitor } = require('electron');
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -91,13 +91,9 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
     autoUpdater.checkForUpdatesAndNotify()
-    // Handle updates
-    autoUpdater.on('update-available', () => {
-      alert('¡Hay una actualización disponible 1!');
-    });
-
   }
 }
+autoUpdater.checkForUpdates();
 
 autoUpdater.on("checking-for-update", () => {
   console.log("checking-for-update");
@@ -110,6 +106,23 @@ autoUpdater.on("update-available", () => {
 autoUpdater.on("update-not-available", () => {
   console.log("update-not-available");
 });
+
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Restart', 'Later'],
+    title: 'Application Update',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail:
+      'A new version has been downloaded. Restart the application to apply the updates.'
+  }
+
+  dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    if (returnValue.response === 0) autoUpdater.quitAndInstall()
+  })
+})
+
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -136,11 +149,6 @@ app.on('ready', async () => {
       repo: '', // defaults to package.json
       updateInterval: '5 minutes',
       notifyUser: true
-  });
-  autoUpdater.on('update-available', () => {
-    alert('¡Hay una actualización disponible!');
-    console.log('¡Hay una actualización disponible!');
-
   });
   createWindow(); 
   if (isDevelopment && !process.env.IS_TEST) {
