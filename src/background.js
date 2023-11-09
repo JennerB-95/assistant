@@ -110,11 +110,11 @@ autoUpdater.on("update-not-available", () => {
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
   const dialogOpts = {
     type: 'info',
-    buttons: ['Restart', 'Later'],
-    title: 'Application Update',
+    buttons: ['Instalar'],
+    title: 'Actualización de la aplicación',
     message: process.platform === 'win32' ? releaseNotes : releaseName,
     detail:
-      'A new version has been downloaded. Restart the assistant-app to apply the updates.'
+      'Se ha descargado una nueva versión. Reinicie la aplicación asistente para aplicar las actualizaciones.'
   }
 
   dialog.showMessageBox(dialogOpts).then((returnValue) => {
@@ -126,7 +126,6 @@ autoUpdater.on('error', (message) => {
   console.error('There was a problem updating the assistant-app')
   console.error(message)
 })
-
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
