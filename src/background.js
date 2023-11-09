@@ -110,11 +110,11 @@ autoUpdater.on("update-not-available", () => {
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
   const dialogOpts = {
     type: 'info',
-    buttons: ['Reiniciar'],
+    buttons: ['Actualizar'],
     title: 'Actualización de la aplicación',
     message: process.platform === 'win32' ? releaseNotes : releaseName,
     detail:
-      'Se ha descargado una nueva versión. Reinicie la aplicación asistente para aplicar las actualizaciones.'
+      'Agradecemos tu confianza en Bitmec. Siempre buscamos mejorar para ofrecerte el mejor servicio posible. Nos complace informarte que hemos lanzado una nueva versión de nuestra aplicación, la cual soluciona errores y brinda una experiencia aún mejor. Te recomendamos reiniciar la aplicación asistente para aplicar estas actualizaciones. ¡Gracias por ser parte de la comunidad Bitmec!'
   }
 
   dialog.showMessageBox(dialogOpts).then((returnValue) => {
