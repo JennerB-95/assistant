@@ -110,7 +110,7 @@ autoUpdater.on("update-not-available", () => {
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
   const dialogOpts = {
     type: 'info',
-    buttons: ['Instalar'],
+    buttons: ['Reiniciar'],
     title: 'Actualización de la aplicación',
     message: process.platform === 'win32' ? releaseNotes : releaseName,
     detail:
