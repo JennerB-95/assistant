@@ -114,7 +114,7 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
     title: 'Actualización de la aplicación',
     message: process.platform === 'win32' ? releaseNotes : releaseName,
     detail:
-      'Agradecemos tu confianza en Bitmec. Siempre buscamos mejorar para ofrecerte el mejor servicio posible. Nos complace informarte que hemos lanzado una nueva versión de nuestra aplicación, la cual soluciona errores y brinda una experiencia aún mejor. Te recomendamos reiniciar la aplicación asistente para aplicar estas actualizaciones. ¡Gracias por ser parte de la comunidad Bitmec!'
+      'Hemos lanzado una nueva versión que soluciona errores y mejora la experiencia. Reinicia la aplicación para aplicar las actualizaciones. ¡Gracias por ser parte de Bitmec!'
   }
 
   dialog.showMessageBox(dialogOpts).then((returnValue) => {
